@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Currencyes</string>
     <string name="dd_mm_yyyy">dd.MM.yyyy</string>
+    <string name="subtitle">SubTitle</string>
+    <string name="title">Title</string>
 </resources>
