@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.Bondidos.CurrencyConverter.ui.mainFragment.MainFragment"
+        android:name="com.bondidos.currencyConverter.presenter.ui.mainFragment.MainFragment"
         android:label="main_fragment"
         tools:layout="@layout/main_fragment" />
 </navigation>

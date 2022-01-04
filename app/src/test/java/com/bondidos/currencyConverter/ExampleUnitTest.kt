@@ -1,4 +1,4 @@
-package com.Bondidos.CurrencyConverter
+package com.bondidos.currencyConverter
 
 import org.junit.Test
 

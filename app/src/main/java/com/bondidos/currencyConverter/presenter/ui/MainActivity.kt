@@ -1,7 +1,8 @@
-package com.Bondidos.CurrencyConverter
+package com.bondidos.currencyConverter.presenter.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.bondidos.currencyConverter.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
