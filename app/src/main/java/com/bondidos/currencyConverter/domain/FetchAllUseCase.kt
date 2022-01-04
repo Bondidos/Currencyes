@@ -1,9 +1,19 @@
 package com.bondidos.currencyConverter.domain
 
-import com.bondidos.currencyConverter.domain.entityes.Currency
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.lang.Exception
+import javax.inject.Inject
 
-class FetchAllUseCase (private val repository: Repository) {
-    fun execute(): Resources{
-        return Resources.Error("Not Implemented")
+class FetchAllUseCase @Inject constructor(private val repository: Repository) {
+    suspend fun execute(): Resources{
+        return withContext(Dispatchers.IO){
+            try {
+                val responseBody = repository.fetchAll("1.4.2022")
+                Resources.Success(emptyList())
+            } catch (e: Exception){
+                Resources.Error(e.toString())
+            }
+        }
     }
 }

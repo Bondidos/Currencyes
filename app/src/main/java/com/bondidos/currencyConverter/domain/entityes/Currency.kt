@@ -1,9 +1,11 @@
 package com.bondidos.currencyConverter.domain.entityes
 
 data class Currency(
-    val id: Int,
-    val name: String,
-    val scale: Int,
-    val previousRate: Double,
-    val presentRate: Double
+    val NumCode: Int,
+    val CharCode: String,
+    val Scale: Int,
+    val Name: String,
+    val Rate: Double,
+    val Id: Int,
+    val text: String
 )

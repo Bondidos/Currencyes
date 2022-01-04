@@ -5,7 +5,7 @@ import com.bondidos.currencyConverter.domain.Repository
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-class Repository @Inject constructor(
+class RepositoryImplementation @Inject constructor(
     private val webService: BankService
 ): Repository {
 

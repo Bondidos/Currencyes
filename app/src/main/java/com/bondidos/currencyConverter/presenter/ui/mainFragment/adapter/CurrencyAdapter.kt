@@ -34,10 +34,10 @@ class CurrencyViewHolder(private val binding: CurrencyItemBinding):
 
         fun bind(data: Currency){
             with(binding){
-                title.text = data.name
+                /*title.text = data.name
                 subTitle.text = data.scale.toString()
                 previousValue.text = data.previousRate.toString()
-                presentValue.text = data.presentRate.toString()
+                presentValue.text = data.presentRate.toString()*/
             }
         }
 }

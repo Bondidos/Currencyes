@@ -57,7 +57,9 @@ dependencies {
 
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+    //implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-jaxb:2.9.0'
+
 
     //viewBinding delegate
     implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.3'
