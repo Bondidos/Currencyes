@@ -1,21 +1,18 @@
 package com.bondidos.currencyConverter.domain.entityes
 
+import com.google.gson.annotations.SerializedName
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
-
-@JsonClass(generateAdapter = true)
 data class Currency(
-    @Json(name = "Cur_Abbreviation")
+    @SerializedName("Cur_Abbreviation")
     val curAbbreviation: String,
-    @Json(name = "Cur_ID")
+    @SerializedName("Cur_ID")
     val curID: Int,
-    @Json(name = "Cur_Name")
+    @SerializedName("Cur_Name")
     val curName: String,
-    @Json(name = "Cur_OfficialRate")
+    @SerializedName("Cur_OfficialRate")
     val curOfficialRate: Double,
-    @Json(name = "Cur_Scale")
+    @SerializedName("Cur_Scale")
     val curScale: Int,
-    @Json(name = "Date")
+    @SerializedName("Date")
     val date: String
 )

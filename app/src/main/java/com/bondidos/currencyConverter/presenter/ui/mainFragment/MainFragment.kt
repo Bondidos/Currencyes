@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bondidos.currencyConverter.R
 import com.bondidos.currencyConverter.databinding.MainFragmentBinding
@@ -27,7 +28,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observe()
-        initRecycler()
     }
 
     private fun observe() {
@@ -38,6 +38,10 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                     is Resources.Success -> {
                         binding.progressBar.isVisible = false
                         currencyAdapter.setData(resources.data)
+                        //set date
+                        binding.firstDate.text = resources.data[0].previousDate
+                        binding.secondDate.text = resources.data[0].todayDate
+                        initRecycler()
                     }
                     is Resources.Error -> {
                         binding.progressBar.isVisible = false
@@ -52,6 +56,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     private fun initRecycler() {
         binding.recycler.apply {
+            layoutManager = LinearLayoutManager(requireContext())
             adapter = currencyAdapter
         }
     }

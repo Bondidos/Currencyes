@@ -4,12 +4,13 @@ import com.bondidos.currencyConverter.data.RepositoryImplementation
 import com.bondidos.currencyConverter.data.sources.BankService
 import com.bondidos.currencyConverter.domain.Repository
 import com.bondidos.currencyConverter.domain.constants.Constants.BASE_URL
+import com.bondidos.currencyConverter.domain.util.Utils
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -18,18 +19,30 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(): Retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create())
-        .baseUrl(BASE_URL)
-        .build()
+    fun provideRetrofit(): BankService {
+       /* val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()*/
 
-    @Singleton
+
+        return Retrofit.Builder()
+          //  .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_URL)
+            .build()
+            .create(BankService::class.java)
+    }
+
+    /*@Singleton
     @Provides
     fun provideNBRBService(retrofit: Retrofit): BankService =
-        retrofit.create(BankService::class.java)
+        retrofit.create(BankService::class.java)*/
 
     @Singleton
     @Provides
     fun provideRepository(bankService: BankService): Repository =
         RepositoryImplementation(bankService)
+
+    @Provides
+    fun provideUtils(): Utils = Utils()
 }
