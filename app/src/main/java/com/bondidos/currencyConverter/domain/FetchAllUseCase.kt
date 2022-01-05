@@ -9,11 +9,12 @@ class FetchAllUseCase @Inject constructor(private val repository: Repository) {
     suspend fun execute(): Resources{
         return withContext(Dispatchers.IO){
             try {
-                val responseBody = repository.fetchAll("1.4.2022")
-                Resources.Success(emptyList())
+//                val responseBody = repository.fetchAll("2022.01.04")
+                Resources.Success(repository.fetchAll("2022.01.04"))
             } catch (e: Exception){
                 Resources.Error(e.toString())
             }
         }
     }
 }
+
