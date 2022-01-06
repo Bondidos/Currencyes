@@ -13,7 +13,6 @@ import com.bondidos.currencyConverter.R
 import com.bondidos.currencyConverter.databinding.MainFragmentBinding
 import com.bondidos.currencyConverter.domain.util.Resources
 import com.bondidos.currencyConverter.presenter.ui.mainFragment.adapter.MainAdapter
-import com.bondidos.currencyConverter.presenter.ui.mainFragment.adapter.SettingsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject

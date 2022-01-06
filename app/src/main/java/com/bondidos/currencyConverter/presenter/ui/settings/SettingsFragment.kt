@@ -11,7 +11,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bondidos.currencyConverter.R
 import com.bondidos.currencyConverter.databinding.SettingsFragmentBinding
 import com.bondidos.currencyConverter.domain.util.Resources
-import com.bondidos.currencyConverter.presenter.ui.mainFragment.adapter.SettingsAdapter
+import com.bondidos.currencyConverter.presenter.ui.settings.adapter.SettingsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject

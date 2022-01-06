@@ -1,9 +1,8 @@
-package com.bondidos.currencyConverter.presenter.ui.mainFragment.adapter
+package com.bondidos.currencyConverter.presenter.ui.settings.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bondidos.currencyConverter.databinding.CurrencyItemBinding
 import com.bondidos.currencyConverter.databinding.SettingsItemBinding
 import com.bondidos.currencyConverter.domain.entityes.Currencies
 

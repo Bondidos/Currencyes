@@ -19,5 +19,4 @@ class LoadDataIntoSettingsUseCase @Inject constructor(
             }
         }
     }
-
 }
