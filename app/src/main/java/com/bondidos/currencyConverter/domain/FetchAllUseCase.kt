@@ -20,7 +20,7 @@ class FetchAllUseCase @Inject constructor(
                 val yesterday = repository.fetchAll(dates[0])
                 val today = repository.fetchAll(dates[1])
                 val result = utils.createCurrency(yesterday,today)
-                        Log.d("UseCAse", result.toString())
+//                        Log.d("UseCAse", result.toString())
                 Resources.Success(result)
             } catch (e: Exception) {
                 e.printStackTrace()
