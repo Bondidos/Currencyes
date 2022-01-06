@@ -1,4 +1,4 @@
-package com.bondidos.currencyConverter.data.sources
+package com.bondidos.currencyConverter.data.api
 
 import com.bondidos.currencyConverter.data.entities.Currency
 import retrofit2.http.GET

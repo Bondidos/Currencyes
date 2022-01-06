@@ -50,4 +50,5 @@ class Utils {
             format.format(calendarTomorrow.time)
         )
     }
+
 }

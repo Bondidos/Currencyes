@@ -68,6 +68,11 @@ dependencies {
     implementation ('com.squareup.moshi:moshi-kotlin:1.12.0')
     kapt ('com.squareup.moshi:moshi-kotlin-codegen:1.12.0')*/
 
+    //room
+    implementation "androidx.room:room-runtime:2.4.0"
+    implementation 'androidx.room:room-ktx:2.4.0'
+    kapt "androidx.room:room-compiler:2.4.0"
+
 
     //viewBinding delegate
     implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.3'

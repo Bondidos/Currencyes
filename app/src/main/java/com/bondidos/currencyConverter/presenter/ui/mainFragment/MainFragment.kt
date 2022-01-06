@@ -11,8 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bondidos.currencyConverter.R
 import com.bondidos.currencyConverter.databinding.MainFragmentBinding
-import com.bondidos.currencyConverter.domain.Resources
-import com.bondidos.currencyConverter.presenter.ui.adapter.CurrencyAdapter
+import com.bondidos.currencyConverter.domain.util.Resources
+import com.bondidos.currencyConverter.presenter.ui.mainFragment.adapter.MainAdapter
+import com.bondidos.currencyConverter.presenter.ui.mainFragment.adapter.SettingsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
@@ -24,7 +25,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     @Inject
     lateinit var viewModel: MainViewModel
-    private val currencyAdapter = CurrencyAdapter()
+    private val currencyAdapter: MainAdapter by lazy {MainAdapter()}
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,4 +1,4 @@
-package com.bondidos.currencyConverter.domain
+package com.bondidos.currencyConverter.domain.util
 
 import com.bondidos.currencyConverter.domain.entityes.Currencies
 

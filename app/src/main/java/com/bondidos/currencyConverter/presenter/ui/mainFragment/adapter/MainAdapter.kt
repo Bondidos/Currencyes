@@ -1,12 +1,13 @@
-package com.bondidos.currencyConverter.presenter.ui.adapter
+package com.bondidos.currencyConverter.presenter.ui.mainFragment.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bondidos.currencyConverter.databinding.CurrencyItemBinding
+import com.bondidos.currencyConverter.databinding.SettingsItemBinding
 import com.bondidos.currencyConverter.domain.entityes.Currencies
 
-class CurrencyAdapter : RecyclerView.Adapter<CurrencyViewHolder>() {
+class MainAdapter : RecyclerView.Adapter<CurrencyViewHolder>() {
 
     private val adapterData = mutableListOf<Currencies>()
 

@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="280dp" />
+        app:layout_constraintGuide_begin="281dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -51,26 +51,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:enabled="false"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
+        android:checked="true"
+        android:minWidth="40dp"
+        android:minHeight="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.521" />
+        app:layout_constraintVertical_bias="0.521"
+        tools:ignore="TouchTargetSizeCheck" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
         android:backgroundTint="@color/design_default_color_background"
         android:contentDescription="@string/draganddroparea"
-        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571"
         app:srcCompat="@drawable/ic_baseline_menu_24"
         tools:ignore="SpeakableTextPresentCheck" />
 

@@ -1,6 +1,7 @@
-package com.bondidos.currencyConverter.domain
+package com.bondidos.currencyConverter.domain.usecase
 
-import android.util.Log
+import com.bondidos.currencyConverter.domain.Repository
+import com.bondidos.currencyConverter.domain.util.Resources
 import com.bondidos.currencyConverter.domain.util.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -21,7 +22,7 @@ class FetchAllUseCase @Inject constructor(
                     repository.fetchAll(dates[0]) else tomorrow
                 val today = repository.fetchAll(dates[1])
                 val result = utils.createCurrency(alternativeDate, today)
-//                        Log.d("UseCAse", result.toString())
+                repository.saveCurrencyToCache(result)
                 Resources.Success(result)
             } catch (e: Exception) {
                 Resources.Error("Не удалось получить курсы валют")
