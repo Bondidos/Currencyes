@@ -2,6 +2,7 @@ package com.bondidos.currencyConverter.presenter.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import com.bondidos.currencyConverter.R
 import dagger.hilt.android.AndroidEntryPoint
 

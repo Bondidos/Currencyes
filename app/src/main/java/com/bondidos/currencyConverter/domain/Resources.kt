@@ -1,7 +1,6 @@
 package com.bondidos.currencyConverter.domain
 
 import com.bondidos.currencyConverter.domain.entityes.Currencies
-import com.bondidos.currencyConverter.domain.entityes.Currency
 
 sealed class Resources{
     object Initialized : Resources()

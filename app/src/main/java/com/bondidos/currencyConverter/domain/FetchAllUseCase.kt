@@ -14,18 +14,17 @@ class FetchAllUseCase @Inject constructor(
     suspend fun execute(): Resources {
         return withContext(Dispatchers.IO) {
 
+            val dates = utils.getCalendar()
             try {
-                val dates = utils.getCalendar()
-//                Log.d("UseCAse", "responseBody.toString()")
-                val yesterday = repository.fetchAll(dates[0])
+                val tomorrow = repository.fetchAll(dates[2])
+                val alternativeDate = if (tomorrow.isEmpty())
+                    repository.fetchAll(dates[0]) else tomorrow
                 val today = repository.fetchAll(dates[1])
-                val result = utils.createCurrency(yesterday,today)
+                val result = utils.createCurrency(alternativeDate, today)
 //                        Log.d("UseCAse", result.toString())
                 Resources.Success(result)
             } catch (e: Exception) {
-                e.printStackTrace()
-                Log.d("UseCAse", e.toString())
-                Resources.Error(e.toString())
+                Resources.Error("Не удалось получить курсы валют")
             }
         }
     }

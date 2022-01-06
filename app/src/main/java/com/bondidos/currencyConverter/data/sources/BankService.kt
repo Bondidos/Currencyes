@@ -1,8 +1,6 @@
 package com.bondidos.currencyConverter.data.sources
 
-import com.bondidos.currencyConverter.domain.entityes.Currency
-import okhttp3.Response
-import retrofit2.Call
+import com.bondidos.currencyConverter.data.entities.Currency
 import retrofit2.http.GET
 import retrofit2.http.Query
 

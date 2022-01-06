@@ -1,13 +1,12 @@
-package com.bondidos.currencyConverter.presenter.ui.mainFragment.adapter
+package com.bondidos.currencyConverter.presenter.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bondidos.currencyConverter.databinding.CurrencyItemBinding
 import com.bondidos.currencyConverter.domain.entityes.Currencies
-import com.bondidos.currencyConverter.domain.entityes.Currency
 
-class CurrencyAdapter: RecyclerView.Adapter<CurrencyViewHolder>() {
+class CurrencyAdapter : RecyclerView.Adapter<CurrencyViewHolder>() {
 
     private val adapterData = mutableListOf<Currencies>()
 
@@ -30,15 +29,20 @@ class CurrencyAdapter: RecyclerView.Adapter<CurrencyViewHolder>() {
     }
 }
 
-class CurrencyViewHolder(private val binding: CurrencyItemBinding):
+class CurrencyViewHolder(private val binding: CurrencyItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: Currencies){
-            with(binding){
-                title.text = data.curAbbreviation
-                subTitle.text = "${data.curScale} ${data.curName}"
-                previousValue.text = data.previousCurOfficialRate.toString()
-                presentValue.text = data.todayCurOfficialRate.toString()
+    fun bind(data: Currencies) {
+        with(binding) {
+            title.text = data.curAbbreviation
+            subTitle.text = "${data.curScale} ${data.curName}"
+            if (data.alternativeDate > data.todayDate) {
+                firstValue.text = data.todayCurOfficialRate.toString()
+                secondValue.text = data.altCurOfficialRate.toString()
+            } else {
+                firstValue.text = data.altCurOfficialRate.toString()
+                secondValue.text = data.todayCurOfficialRate.toString()
             }
         }
+    }
 }

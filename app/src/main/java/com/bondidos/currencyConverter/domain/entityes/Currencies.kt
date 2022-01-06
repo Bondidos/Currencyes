@@ -4,8 +4,8 @@ data class Currencies (
     val curAbbreviation: String,
     val curName: String,
     val curScale: Int,
-    val previousCurOfficialRate: Double,
+    val altCurOfficialRate: Double,
     val todayCurOfficialRate: Double,
-    val previousDate: String,
+    val alternativeDate: String,
     val todayDate: String
 )

@@ -1,4 +1,4 @@
-package com.bondidos.currencyConverter.domain.entityes
+package com.bondidos.currencyConverter.data.entities
 
 import com.google.gson.annotations.SerializedName
 

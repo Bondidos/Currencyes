@@ -2,24 +2,26 @@ package com.bondidos.currencyConverter.domain.util
 
 import android.annotation.SuppressLint
 import com.bondidos.currencyConverter.domain.entityes.Currencies
-import com.bondidos.currencyConverter.domain.entityes.Currency
+import com.bondidos.currencyConverter.data.entities.Currency
 import java.text.SimpleDateFormat
 import java.util.*
 
 class Utils {
-    fun createCurrency(previousDay: List<Currency>, today: List<Currency>): List<Currencies> {
+    fun createCurrency(altDay: List<Currency>, today: List<Currency>): List<Currencies> {
         val result = mutableListOf<Currencies>()
-        val time = getCalendar()
+        val date = getCalendar()
         today.forEachIndexed { index, todayCur ->
+            val altDateIndex = if(todayCur.date < altDay[index].date)
+                2 else 0
             result.add(
                 Currencies(
                     curAbbreviation = todayCur.curAbbreviation,
                     curName = todayCur.curName,
                     curScale = todayCur.curScale,
-                    previousCurOfficialRate = previousDay[index].curOfficialRate,
+                    altCurOfficialRate = altDay[index].curOfficialRate,
                     todayCurOfficialRate = todayCur.curOfficialRate,
-                    previousDate = time[0],
-                    todayDate = time[1]
+                    alternativeDate = date[altDateIndex],
+                    todayDate = date[1]
                 )
             )
         }
@@ -38,10 +40,14 @@ class Utils {
         val calendarYesterday = GregorianCalendar()
         calendarYesterday.isLenient = false
         calendarYesterday.set(year, month, day - 1)
+        val calendarTomorrow = GregorianCalendar()
+        calendarTomorrow.isLenient = false
+        calendarTomorrow.set(year, month, day + 1)
         val format = SimpleDateFormat("yyyy.MM.dd", Locale("ru"))
         return listOf(
             format.format(calendarYesterday.time),
-            format.format(calendarToday.time)
+            format.format(calendarToday.time),
+            format.format(calendarTomorrow.time)
         )
     }
 }

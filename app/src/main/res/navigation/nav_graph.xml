@@ -3,11 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/mainFragment2">
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/mainFragment2"
         android:name="com.bondidos.currencyConverter.presenter.ui.mainFragment.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment2_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.bondidos.currencyConverter.presenter.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>
