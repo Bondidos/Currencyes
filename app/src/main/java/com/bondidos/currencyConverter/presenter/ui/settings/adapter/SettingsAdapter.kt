@@ -40,6 +40,7 @@ class SettingsViewHolder(private val binding: SettingsItemBinding, private val a
         with(binding) {
             title.text = data.curAbbreviation
             subTitle.text = "${data.curScale} ${data.curName}"
+            switcher.isChecked = data.isShow
             switcher.setOnClickListener {
 //                Log.d("UseCAse","Clicked on the ${data.curAbbreviation} & switcher is ${switcher.isChecked}")
                 action(data.curAbbreviation,switcher.isChecked)

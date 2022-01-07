@@ -27,13 +27,16 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
     @Inject
     lateinit var viewModel: SettingsViewModel
 
-    /*@Inject
-    lateinit var mainViewModel: MainViewModel*/
+    @Inject
+    lateinit var mainViewModel: MainViewModel
 
     private val currencyAdapter: SettingsAdapter by lazy {
         SettingsAdapter { curAbr, isShow ->
             Log.d("UseCAse", "lamda from settings into adapter")
+
+            // isThreadSafe!?
             viewModel.updateIsShowField(curAbr,isShow)
+            mainViewModel.refresh()
         }
     }
 
