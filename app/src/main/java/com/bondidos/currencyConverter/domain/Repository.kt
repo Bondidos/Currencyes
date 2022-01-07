@@ -8,4 +8,5 @@ interface Repository {
     suspend fun fetchCurrencies(date: String): List<Currency>
     suspend fun saveCurrencyToCache(currency: List<Currencies>)
     suspend fun getCurrencyFromCache(): List<Currencies>
+    suspend fun updateCurrencyState(currencies: Currencies)
 }

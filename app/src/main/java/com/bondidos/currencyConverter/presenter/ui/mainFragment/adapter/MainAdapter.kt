@@ -18,7 +18,6 @@ class MainAdapter : RecyclerView.Adapter<CurrencyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
-        // if(adapterData[position].isShow)
         holder.bind(adapterData[position])
     }
 

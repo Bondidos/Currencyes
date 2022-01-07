@@ -19,4 +19,8 @@ class RepositoryImplementation @Inject constructor(
 
     override suspend fun getCurrencyFromCache(): List<Currencies> =
         roomStorage.getCurrenciesFromCache()
+
+    override suspend fun updateCurrencyState(currencies: Currencies) {
+        roomStorage.updateCurrencyState(currencies)
+    }
 }

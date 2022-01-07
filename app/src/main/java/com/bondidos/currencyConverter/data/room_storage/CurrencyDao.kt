@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
+import androidx.room.Update
 import com.bondidos.currencyConverter.domain.entityes.Currencies
 
 @Dao
@@ -14,4 +15,7 @@ interface CurrencyDao {
 
     @Query("select * from currency")
     suspend fun getCurrenciesFromCache(): List<Currencies>
+
+    @Update
+    fun updateCurrencyState(currencies: Currencies)
 }
