@@ -11,7 +11,7 @@ class RepositoryImplementation @Inject constructor(
     private val roomStorage: CurrencyDao
 ) : Repository {
 
-    override suspend fun fetchAll(date: String) = webService.fetchAll(date)
+    override suspend fun fetchCurrencies(date: String) = webService.fetchAll(date)
 
     override suspend fun saveCurrencyToCache(currency: List<Currencies>) =
         roomStorage.saveCurrenciesToCache(currency)

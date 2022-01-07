@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class Utils {
+
     fun createCurrency(altDay: List<Currency>, today: List<Currency>): List<Currencies> {
         val result = mutableListOf<Currencies>()
         val date = getCalendar()
@@ -26,6 +27,16 @@ class Utils {
             )
         }
         return result.toList()
+    }
+
+    fun updateIsShowField(apiList: List<Currencies>, cacheList: List<Currencies>): List<Currencies>{
+        if(cacheList.isNotEmpty()) {
+            apiList.forEachIndexed { index, currencies ->
+                if (currencies.isShow != cacheList[index].isShow)
+                    currencies.isShow = cacheList[index].isShow
+            }
+        }
+        return apiList
     }
 
     @SuppressLint("SimpleDateFormat")

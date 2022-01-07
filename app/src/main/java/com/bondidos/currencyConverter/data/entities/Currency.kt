@@ -10,7 +10,7 @@ data class Currency(
     @SerializedName("Cur_Name")
     val curName: String,
     @SerializedName("Cur_OfficialRate")
-    val curOfficialRate: Double,
+    val curOfficialRate: Double?,
     @SerializedName("Cur_Scale")
     val curScale: Int,
     @SerializedName("Date")

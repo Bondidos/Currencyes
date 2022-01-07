@@ -8,7 +8,7 @@ import kotlinx.coroutines.withContext
 import java.lang.Exception
 import javax.inject.Inject
 
-class FetchAllUseCase @Inject constructor(
+class FetchActualCurrenciesUseCase @Inject constructor(
     private val repository: Repository,
     private val utils: Utils
 ) {
@@ -16,13 +16,19 @@ class FetchAllUseCase @Inject constructor(
         return withContext(Dispatchers.IO) {
 
             val dates = utils.getCalendar()
+
             try {
-                val tomorrow = repository.fetchAll(dates[2])
-                val alternativeDate = if (tomorrow.isEmpty())
-                    repository.fetchAll(dates[0]) else tomorrow
-                val today = repository.fetchAll(dates[1])
-                val result = utils.createCurrency(alternativeDate, today)
+                val tomorrow = repository.fetchCurrencies(dates[2])
+
+                val alternativeDate =
+                    if (tomorrow.isEmpty()) repository.fetchCurrencies(dates[0]) else tomorrow
+
+                val today = repository.fetchCurrencies(dates[1])
+                val apiList = utils.createCurrency(alternativeDate, today)
+                val cacheList = repository.getCurrencyFromCache()
+                val result = utils.updateIsShowField(apiList, cacheList)
                 repository.saveCurrencyToCache(result)
+
                 Resources.Success(result)
             } catch (e: Exception) {
                 Resources.Error("Не удалось получить курсы валют")
