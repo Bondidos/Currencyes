@@ -1,6 +1,5 @@
 package com.bondidos.currencyConverter.domain.usecase
 
-import com.bondidos.currencyConverter.data.entities.Currency
 import com.bondidos.currencyConverter.domain.Repository
 import com.bondidos.currencyConverter.domain.constants.Constants.TODAY_DATE
 import com.bondidos.currencyConverter.domain.constants.Constants.TOMORROW_DATE
@@ -24,32 +23,12 @@ class FetchActualCurrenciesUseCase @Inject constructor(
     suspend fun execute(): Resources {
         return withContext(Dispatchers.IO) {
 
-            /**
-            1. If cached list has the same todayDate and tomorrowDate ->
-            - use cached list
-            - else fetchList from Api and Update Cache
-
-            2. cached list ->
-            map to list for display (delete items with isShow == false)
-            .create new class where drop no needed fields
-
-            3. List to show -> MainViewModel
-            -----------------------------------------
-
-            Settings
-
-            1. switched ->
-            - update Currencies in room
-            - delete from MainViewModel List
-
-             */
             try {
-                val tomorrowCurrency = repository.fetchCurrencies(dates[TOMORROW_DATE])
                 val cache = repository.getCurrencyFromCache()
-                if (isCachedListActual(tomorrowCurrency, cache)) {
+                if (isCachedListActual(cache)) {
                     Resources.Success(utils.removeItemsWhichShouldNotShown(cache))
                 } else {
-                    val apiList = createListFromApi(tomorrowCurrency)
+                    val apiList = createListFromApi()
                     apiList.updateIsShowField(cache)
                     repository.saveCurrencyToCache(apiList)
                     Resources.Success(utils.removeItemsWhichShouldNotShown(apiList))
@@ -61,21 +40,20 @@ class FetchActualCurrenciesUseCase @Inject constructor(
     }
 
     private fun isCachedListActual(
-        tomorrowCurrency: List<Currency>,
         cache: List<Currencies>
     ): Boolean {
-        return if (tomorrowCurrency.isEmpty()) {
-            cache.first().todayDate == dates[TODAY_DATE] &&
-                    cache.first().alternativeDate == dates[YESTERDAY_DATE]
-        } else cache.first().todayDate == dates[TODAY_DATE] &&
-                cache.first().alternativeDate == dates[TOMORROW_DATE]
+        val controlItem = cache.first()
+        return controlItem.alternativeDate == dates[TOMORROW_DATE] &&
+            controlItem.todayDate == dates[TODAY_DATE] ||
+            controlItem.todayDate == dates[TODAY_DATE] &&
+            controlItem.alternativeDate == dates[YESTERDAY_DATE]
     }
 
-    private suspend fun createListFromApi(tomorrowCurrency: List<Currency>): List<Currencies> {
+    private suspend fun createListFromApi(): List<Currencies> {
+        val tomorrowCurrency = repository.fetchCurrencies(dates[TOMORROW_DATE])
         val todayCurrencyList = repository.fetchCurrencies(dates[TODAY_DATE])
         val alternativeDate =
             if (tomorrowCurrency.isEmpty()) repository.fetchCurrencies(dates[YESTERDAY_DATE]) else tomorrowCurrency
         return utils.createCurrency(alternativeDate, todayCurrencyList)
     }
 }
-
