@@ -3,6 +3,9 @@ package com.bondidos.currencyConverter.domain.util
 import android.annotation.SuppressLint
 import com.bondidos.currencyConverter.domain.entityes.Currencies
 import com.bondidos.currencyConverter.data.entities.Currency
+import com.bondidos.currencyConverter.domain.constants.Constants.TODAY_DATE
+import com.bondidos.currencyConverter.domain.constants.Constants.TOMORROW_DATE
+import com.bondidos.currencyConverter.domain.constants.Constants.YESTERDAY_DATE
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -13,7 +16,7 @@ class Utils {
         val date = getCalendar()
         today.forEachIndexed { index, todayCur ->
             val altDateIndex = if(todayCur.date < altDay[index].date)
-                2 else 0
+                TOMORROW_DATE else YESTERDAY_DATE
             result.add(
                 Currencies(
                     curAbbreviation = todayCur.curAbbreviation,
@@ -22,21 +25,21 @@ class Utils {
                     altCurOfficialRate = altDay[index].curOfficialRate,
                     todayCurOfficialRate = todayCur.curOfficialRate,
                     alternativeDate = date[altDateIndex],
-                    todayDate = date[1]
+                    todayDate = date[TODAY_DATE]
                 )
             )
         }
         return result.toList()
     }
 
-    fun updateIsShowField(apiList: List<Currencies>, cacheList: List<Currencies>): List<Currencies>{
-        if(cacheList.isNotEmpty()) {
-            apiList.forEachIndexed { index, currencies ->
-                if (currencies.isShow != cacheList[index].isShow)
-                    currencies.isShow = cacheList[index].isShow
-            }
+    fun removeItemsWhichShouldNotShown(list: List<Currencies>): List<Currencies>{
+        val copy = mutableListOf<Currencies>()
+        copy += list
+        list.forEach { item ->
+            if(!item.isShow)
+                copy.remove(item)
         }
-        return apiList
+        return copy
     }
 
     @SuppressLint("SimpleDateFormat")
