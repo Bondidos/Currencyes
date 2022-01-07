@@ -30,6 +30,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
         observe()
+        initRecycler()
     }
 
     private fun setListeners() {
@@ -39,7 +40,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
     private fun observe() {
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launchWhenResumed {
             viewModel.currencies.collect { resources ->
                 when (resources) {
                     is Resources.Loading -> binding.progressBar.isVisible = true
@@ -48,7 +49,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                         currencyAdapter.setData(resources.data)
                         //set date
                         setDate(resources.data[0].alternativeDate, resources.data[0].todayDate)
-                        initRecycler()
                     }
                     is Resources.Error -> {
                         binding.progressBar.isVisible = false

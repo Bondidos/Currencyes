@@ -1,5 +1,6 @@
 package com.bondidos.currencyConverter.presenter.ui.mainFragment.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -22,11 +23,13 @@ class MainAdapter : RecyclerView.Adapter<CurrencyViewHolder>() {
 
     override fun getItemCount(): Int = adapterData.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(data: List<Currencies>) {
         adapterData.apply {
             clear()
             addAll(data)
         }
+        notifyDataSetChanged()
     }
 }
 
