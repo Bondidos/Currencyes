@@ -7,14 +7,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bondidos.currencyConverter.databinding.SettingsItemBinding
 import com.bondidos.currencyConverter.domain.entityes.Currencies
+import com.bondidos.currencyConverter.presenter.ui.settings.drug_and_drop.ItemTouchHelperAdapter
+import java.util.*
 
-class SettingsAdapter(private val action: (String, Boolean) -> Unit) : RecyclerView.Adapter<SettingsViewHolder>() {
+class SettingsAdapter(
+    private val action: (String, Boolean) -> Unit
+) : RecyclerView.Adapter<SettingsViewHolder>(), ItemTouchHelperAdapter {
 
     private val adapterData = mutableListOf<Currencies>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SettingsViewHolder {
         val binding = SettingsItemBinding.inflate(LayoutInflater.from(parent.context))
-        return SettingsViewHolder(binding,action)
+        return SettingsViewHolder(binding, action)
     }
 
     override fun onBindViewHolder(holder: SettingsViewHolder, position: Int) {
@@ -31,20 +35,22 @@ class SettingsAdapter(private val action: (String, Boolean) -> Unit) : RecyclerV
         }
         notifyDataSetChanged()
     }
-}
 
-class SettingsViewHolder(private val binding: SettingsItemBinding, private val action: (String,Boolean) -> Unit) :
-    RecyclerView.ViewHolder(binding.root) {
+    override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
 
-    fun bind(data: Currencies) {
-        with(binding) {
-            title.text = data.curAbbreviation
-            subTitle.text = "${data.curScale} ${data.curName}"
-            switcher.isChecked = data.isShow
-            switcher.setOnClickListener {
-//                Log.d("UseCAse","Clicked on the ${data.curAbbreviation} & switcher is ${switcher.isChecked}")
-                action(data.curAbbreviation,switcher.isChecked)
+        if (fromPosition < toPosition) {
+            (fromPosition until toPosition).forEach { index ->
+                Collections.swap(adapterData, index, index + 1)
+                Log.d("UseCAse","from $fromPosition to $toPosition")
+            }
+        } else {
+            (fromPosition downTo  toPosition+1).forEach { index ->
+                Collections.swap(adapterData, index, index - 1)
+                Log.d("UseCAse","from $fromPosition to $toPosition")
             }
         }
+        notifyItemMoved(fromPosition, toPosition)
+        return true
     }
 }
+
