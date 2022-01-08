@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
 class TouchHelper(
-    private val touchAdapter: ItemTouchHelperAdapter
+    private val touchAdapter: (Int, Int) -> Boolean
 ) : ItemTouchHelper.SimpleCallback(
     ItemTouchHelper.UP or ItemTouchHelper.DOWN,
     ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
@@ -15,15 +15,11 @@ class TouchHelper(
         target: RecyclerView.ViewHolder
     ): Boolean {
 
-        touchAdapter.onItemMove(viewHolder.absoluteAdapterPosition,target.absoluteAdapterPosition)
+        touchAdapter(viewHolder.absoluteAdapterPosition,target.absoluteAdapterPosition)
         return true
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) = Unit
 
     override fun isLongPressDragEnabled() = true
-}
-
-interface ItemTouchHelperAdapter {
-    fun onItemMove(fromPosition: Int, toPosition: Int): Boolean
 }

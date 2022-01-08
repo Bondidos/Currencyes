@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bondidos.currencyConverter.databinding.SettingsItemBinding
 import com.bondidos.currencyConverter.domain.entityes.Currencies
-import com.bondidos.currencyConverter.presenter.ui.settings.drug_and_drop.ItemTouchHelperAdapter
 import java.util.*
 
 class SettingsAdapter(
     private val action: (String, Boolean) -> Unit
-) : RecyclerView.Adapter<SettingsViewHolder>(), ItemTouchHelperAdapter {
+) : RecyclerView.Adapter<SettingsViewHolder>(), (Int,Int) -> Boolean {
 
     private val adapterData = mutableListOf<Currencies>()
 
@@ -36,8 +35,7 @@ class SettingsAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
-
+    override fun invoke(fromPosition: Int, toPosition: Int): Boolean {
         if (fromPosition < toPosition) {
             (fromPosition until toPosition).forEach { index ->
                 Collections.swap(adapterData, index, index + 1)
